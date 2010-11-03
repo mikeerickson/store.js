@@ -1,32 +1,25 @@
+/* Copyright (c) 2010 Marcus Westin
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ */
+
 (function($) {
-  // {
-    // "name": "store.js",
-    // "description": "A localStorage wrapper for all browsers without using cookies or flash. Uses localStorage, globalStorage, and userData behavior under the hood",
-    // "version": "1.0.2",
-    // "homepage": "http://github.com/marcuswestin/store.js/",
-    // "author": "Marcus Westin <narcvs@gmail.com> (http://marcuswest.in)",
-    // "contributors": [
-      // "Matt Pizzimenti <mjpizz+github@gmail.com> (http://mjpizz.com)",
-      // "Long Ouyang (http://github.com/longouyang)",
-      // "Paul Irish (http://paulirish.com)",
-      // "Guillermo Rauch <rauchg@gmail.com> (http://github.com/guille)"
-    // ],
-    // "repository": {
-      // "type": "git",
-      // "url": "http://github.com/marcuswestin/store.js/"
-    // },
-    // "bugs": {
-      // "web": "http://github.com/marcuswestin/store.js/issues"
-    // },
-    // "engines" : {
-      // "browser" : "*"
-    // },
-    // "licenses" : [{
-      // "type": "MIT", 
-      // "url": "http://github.com/marcuswestin/store.js/raw/master/LICENSE"
-    // }],
-    // "main": "store"
-  // }
   $.store = (function(){
     var api = {},
       win = window,
