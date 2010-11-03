@@ -22,12 +22,12 @@ jquery.store.js exposes a simple API for cross browser local storage
 	var user = $.store.get('user');
 	alert(user.name + ' likes ' + user.likes);
   
-  // Modify an existing object in place - creates new object if none exists
-  $.store.transact('user', function(user) {
-    user.name = 'fred';
-  });
-  user = $.store.get('user');
-  alert(user.name + ' was changed from marcus to fred');
+	// Modify an existing object in place - creates new object if none exists
+	$.store.transact('user', function(user) {
+	  user.name = 'fred';
+	});
+	user = $.store.get('user');
+	alert(user.name + ' was changed from marcus to fred');
 
 jquery.store.js depends on JSON for serialization.
 
