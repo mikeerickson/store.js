@@ -1,28 +1,35 @@
-store.js
+jquery.store.js
 ========
 
-store.js exposes a simple API for cross browser local storage
+jquery.store.js exposes a simple API for cross browser local storage
 
 	// Store 'marcus' at 'username'
-	store.set('username', 'marcus')
+	$.store.set('username', 'marcus');
 	
 	// Get 'username'
-	store.get('username')
+	$.store.get('username');
 	
 	// Remove 'username'
-	store.remove('username')
+	$.store.remove('username');
 	
 	// Clear all keys
-	store.clear()
+	$.store.clear();
 	
-	// Store an object literal - store.js uses JSON.stringify under the hood
-	store.set('user', { name: 'marcus', likes: 'javascript' })
+	// Store an object literal - jquery.store.js uses JSON.stringify under the hood
+	$.store.set('user', { name: 'marcus', likes: 'javascript' });
 	
-	// Get the stored object - store.js uses JSON.parse under the hood
-	var user = store.get('user')
-	alert(user.name + ' likes ' + user.likes)
+	// Get the stored object - jquery.store.js uses JSON.parse under the hood
+	var user = $.store.get('user');
+	alert(user.name + ' likes ' + user.likes);
+  
+  // Modify an existing object in place - creates new object if none exists
+  $.store.transact('user', function(user) {
+    user.name = 'fred';
+  });
+  user = $.store.get('user');
+  alert(user.name + ' was changed from marcus to fred');
 
-store.js depends on JSON for serialization.
+jquery.store.js depends on JSON for serialization.
 
 IE6/7 limitation
 ----------------
@@ -31,26 +38,26 @@ Access to the userData behavior in IE6 and IE7 is restricted to "same directory"
 Here are some examples to demonstrate the IE6 and IE7 limitations:
 
 	// on http://example.com/path1/
-	store.set('foo', 1)
+	$.store.set('foo', 1)
 	
 	// on http://example.com/path1/test.html the value of "foo"
 	// is readable because we are in the same "directory" /path1/
-	store.get('foo') == 1
-	store.set('bar', 2)
+	$.store.get('foo') == 1
+	$.store.set('bar', 2)
 	
 	// on http://example.com/path2/ the values of "foo" and "bar" are not readable
 	// because we are not in the same "directory" - the directory is not /path2/
-	store.get('foo') == null
-	store.get('bar') == null
+	$.store.get('foo') == null
+	$.store.get('bar') == null
 
 	// on http://example.com/path1/subpath/ the values of "foo" and "bar" are not
 	// readable here either, because we are in the directory /path1/subpath/.
-	store.get('foo') == null
-	store.get('bar') == null
+	$.store.get('foo') == null
+	$.store.get('bar') == null
 
 How does it works?
 ------------------
-store.js uses localStorage when available, and falls back on globalStorage for earlier versions of Firefox and the userData behavior in IE6 and IE7.
+jquery.store.js uses localStorage when available, and falls back on globalStorage for earlier versions of Firefox and the userData behavior in IE6 and IE7.
 No flash to slow down your page load. No cookies to fatten your network requests.
 
 Serialization
@@ -68,18 +75,18 @@ localStorage calls toString on all values that get stores. This means that you c
 	localStorage.tags.length == 32
 	localStorage.tags == "javascript,localStorage,store.js"
 
-What we want (and get with store.js) is
+What we want (and get with jquery.store.js) is
 
-	store.set('myage', 24)
-	store.get('myage', 24) == 24
+	$.store.set('myage', 24)
+	$.store.get('myage', 24) == 24
 	
-	store.set('user', { name: 'marcus', likes: 'javascript' })
-	alert("Hi my name is " + store.get('user').name + "!")
+	$.store.set('user', { name: 'marcus', likes: 'javascript' })
+	alert("Hi my name is " + $.store.get('user').name + "!")
 	
-	store.set('tags', ['javascript', 'localStorage', 'store.js'])
-	alert("We've got " + store.get('tags').length + " tags here")
+	$.store.set('tags', ['javascript', 'localStorage', 'store.js'])
+	alert("We've got " + $.store.get('tags').length + " tags here")
 
-The native serialization engine of javascript is JSON. Rather than leaving it up to you to serialize and deserialize your values, store.js uses JSON.stringify() and JSON.parse() on each call to store.set() and store.get(), respectively.
+The native serialization engine of javascript is JSON. Rather than leaving it up to you to serialize and deserialize your values, jquery.store.js uses JSON.stringify() and JSON.parse() on each call to $.store.set() and $.store.get(), respectively.
 
 Some browsers do not have native support for JSON. For those browsers you should include [JSON.js] (non-minified copy is included in this repo).
 
@@ -111,7 +118,7 @@ Unsupported browsers
 -------------------
  - Firefox 1.0: no means (beside cookies and flash)
  - Safari 2: no means (beside cookies and flash)
- - Safari 3: no synchronous api (has asynch sqlite api, but store.js is synch)
+ - Safari 3: no synchronous api (has asynch sqlite api, but jquery.store.js is synch)
  - Opera 9: don't know if there is synchronous api for storing data locally
  - Firefox 1.5: don't know if there is synchronous api for storing data locally
 
