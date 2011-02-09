@@ -55,14 +55,13 @@ Here are some examples to demonstrate the IE6 and IE7 limitations:
 	$.store.get('foo') == null
 	$.store.get('bar') == null
 
-How does it works?
+How does it work?
 ------------------
-jquery.store.js uses localStorage when available, and falls back on globalStorage for earlier versions of Firefox and the userData behavior in IE6 and IE7.
-No flash to slow down your page load. No cookies to fatten your network requests.
+jquery.store.js uses localStorage when available, and falls back on globalStorage for earlier versions of Firefox and the userData behavior in IE6 and IE7. No flash to slow down your page load. No cookies to fatten your network requests.
 
 Serialization
 -------------
-localStorage calls toString on all values that get stores. This means that you can't conveniently store and retrieve numbers, objects or arrays:
+localStorage, when used without store.js, calls toString on all stored values. This means that you can't conveniently store and retrieve numbers, objects or arrays:
 
 	localStorage.myage = 24
 	localStorage.myage != 24
@@ -78,7 +77,7 @@ localStorage calls toString on all values that get stores. This means that you c
 What we want (and get with jquery.store.js) is
 
 	$.store.set('myage', 24)
-	$.store.get('myage', 24) == 24
+	$.store.get('myage') == 24
 	
 	$.store.set('user', { name: 'marcus', likes: 'javascript' })
 	alert("Hi my name is " + $.store.get('user').name + "!")
@@ -122,10 +121,18 @@ Unsupported browsers
  - Opera 9: don't know if there is synchronous api for storing data locally
  - Firefox 1.5: don't know if there is synchronous api for storing data locally
 
+Forks
+----
+ - Sans JSON support (simple key/values only): https://github.com/cloudhead/store.js
+ - jQueryfied version: https://github.com/whitmer/store.js 
+ - Lint.js passing version (with semi-colons): https://github.com/StevenBlack/store.js
+
 TODO
 ----
  - I believe underlying APIs can throw under certain conditions. Where do we need try/catch?
  - Test different versions of Opera 10.X explicitly
+
+My repo: https://github.com/marcuswestin/store.js
 
 
   [JSON.js]: http://www.json.org/json2.js
