@@ -14,6 +14,9 @@ jquery.store.js exposes a simple API for cross browser local storage
 	
 	// Clear all keys
 	$.store.clear();
+
+	// Get all keys
+	$.store.getAll();
 	
 	// Store an object literal - jquery.store.js uses JSON.stringify under the hood
 	$.store.set('user', { name: 'marcus', likes: 'javascript' });
@@ -54,6 +57,8 @@ Here are some examples to demonstrate the IE6 and IE7 limitations:
 	// readable here either, because we are in the directory /path1/subpath/.
 	$.store.get('foo') == null
 	$.store.get('bar') == null
+
+	console.log($.store.getAll())
 
 How does it work?
 ------------------
@@ -125,6 +130,7 @@ Forks
 ----
  - Sans JSON support (simple key/values only): https://github.com/cloudhead/store.js
  - jQueryfied version: https://github.com/whitmer/store.js 
+ - jQueryfied version (w/getAll function): https://github.com/mikeerickson/store.js
  - Lint.js passing version (with semi-colons): https://github.com/StevenBlack/store.js
 
 TODO

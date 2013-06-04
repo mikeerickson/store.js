@@ -17,6 +17,9 @@
  * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
+ *
+ * 2013-06-04 1:35:19 mike erickson/codedungeon@gmail.com
+ * - Added getAll function
  */
 
 jQuery.store = (function(){
